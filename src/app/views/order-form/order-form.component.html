@@ -1,0 +1,77 @@
+<nav class="navbar navbar-mainbg">
+    <div class="logo">
+        <span class="navbar-brand navbar-logo">Create Order</span>
+      </div>
+</nav>
+<div class="order-form">
+    <form [formGroup]="orderForm" (submit)="onSubmit()">
+      <div class="form-group">
+        <label>Full Name*</label>
+        <input
+          type="text"
+          formControlName="customerName"
+          class="form-control" placeholder="Sanketh Chigurupalli"
+          [ngClass]="{ 'is-invalid': submitted && orderForm.get('customerName')?.errors }"
+        />
+        <div *ngIf="submitted && orderForm.get('customerName')?.errors" class="invalid-feedback">
+          <div *ngIf="orderForm.get('customerName')?.errors?.required">Name is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Address*</label>
+        <input
+          type="text" placeholder="Huston, Texas"
+          formControlName="address"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && orderForm.get('address')?.errors }"
+        />
+        <div *ngIf="submitted && orderForm.get('address')?.errors" class="invalid-feedback">
+          <div *ngIf="orderForm.get('address')?.errors?.required">Address is required</div>
+          <div *ngIf="orderForm.get('address')?.errors?.minlength">
+            Address must be at least 6 characters
+          </div>
+          <div *ngIf="orderForm.get('address')?.errors?.maxlength">
+            Address must not exceed 40 characters
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Phone*</label>
+        <input
+          type="text" placeholder="9812345698"
+          formControlName="telNum"
+          class="form-control" maxlength="10"
+          [ngClass]="{ 'is-invalid': submitted && orderForm.get('telNum')?.errors }"
+        />
+        <div *ngIf="submitted && orderForm.get('telNum')?.errors" class="invalid-feedback">
+          <div *ngIf="orderForm.get('telNum')?.errors?.required">Phone is required</div>
+          <div *ngIf="orderForm.get('telNum')?.errors?.minlength">
+            Phone minimum length 10 characters
+          </div>
+          <div *ngIf="orderForm.get('telNum')?.errors?.maxlength">
+            Phone maximum length 10 characters
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Quantity*</label>
+        <input
+          type="number"
+          formControlName="quantity"
+          class="form-control" placeholder="Enter a No.of items"
+          [ngClass]="{ 'is-invalid': submitted && orderForm.get('quantity')?.errors }"
+        />
+        <div *ngIf="orderForm.get('quantity')?.errors" class="invalid-feedback">
+          <div *ngIf="orderForm.get('quantity')?.errors?.required">Quantity is required.</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <button [disabled]="!this.orderForm.valid" type="submit" class="btn">Add Order</button>
+        <button (click)="activeModal.close()" class=" ml-2 btn" >Close</button>
+      </div>
+    </form>
+  </div>

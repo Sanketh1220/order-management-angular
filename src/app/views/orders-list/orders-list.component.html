@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<nav class="navbar navbar-mainbg">
+    <div class="logo">
+        <span style="color: #fff;"><i class="ml-3 fab fa-jedi-order"></i></span>
+        <span class="navbar-brand navbar-logo">Order Management</span>
+    </div>
+</nav>
+
+<div class="container justify-content-center shadow">
+    <button (click)="openModal();" class="btn">Add Order</button>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<div class="table-responsive">
+				<table class="table order-list">
+					<thead>
+						<tr>
+                            <th class="text-center bold"><strong><span>Order No.</span></strong></th>
+							<th class="text-center"><strong><span>Customer Name</span></strong> </th>
+							<th class="text-center"><strong><span>Order Due Date</span></strong></th>
+							<th class="text-center"><strong><span>Address</span></strong></th>
+							<th class="text-center"><strong><span>Phone</span></strong></th>
+                            <th class="text-center"><strong><span>Total Amount</span></strong></th>
+							<th class="text-center"><strong><span>Actions</span></strong></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let order of orders">
+                            <td class="text-center">#{{order.orderNumber}}</td>
+							<td class="text-center">
+								{{order.customerName}}
+							</td>
+							<td class="text-center">
+								{{order.dueDate}}
+							</td>
+							<td class="text-center">
+								{{order.address}}
+							</td>
+							<td class="text-center">
+								{{order.telNum}}
+							</td>
+                            <td class="text-center">
+                                {{order.totalAmount}}
+                            </td>
+							<td class="text-center" style="width: 20%;">
+								<button class="btn mr-2" (click)="editContact(order)">									
+                                    Edit
+								</button>
+								<button class="btn" (click)="confirmDelete(order)">									
+                                    Delete
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
